@@ -72,7 +72,6 @@ function getUserById(id)
 
 // template route -> to user data based on user id
 app.get("/api/user/:userId", function(request, response){
-
     try{
 
         const userParamas = request.params.userId;
@@ -121,6 +120,9 @@ app.use(function(req, res, next){ // checklist if we are sending the empty data 
     else next();
 })
 
+// function createHandler(){
+    
+// }
 
 app.post("/api/user", function(req, res){
     // console.log("i am inside post");
