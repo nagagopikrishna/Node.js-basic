@@ -71,33 +71,35 @@ async function getAllUser(req, res){
     }
 }
 
+app.use(express.json());
+
 async function createHandler(req, res){
-    // try{
-    //     console.log("post method called")
-    //     const userDetails = req.body;
-    //     console.log(userDetails)
-    //     // adding user to the DV
-    //     const user = await UserModel.create(userDetails);
-    //     res.status(200).json({
-    //         status: "success",
-    //         message: "added to db",
-    //         user,
-    //     })
-    // }
+    try{
+        // console.log("post method called")
+        const userDetails = req.body;
+        // console.log(userDetails)
+        // adding user to the DV
+        const user = await UserModel.create(userDetails);
+        res.status(200).json({
+            status: "success",
+            message: "added to db",
+            user,
+        })
+    }
 
-    // catch(error){
-    //     res.status(500).json({
-    //         status: "failure",
-    //         message: error.message,
-    //     })
-    // }
+    catch(error){
+        res.status(500).json({
+            status: "failure",
+            message: error.message,
+        })
+    }
 
-    console.log(req.body);
-    res.status(200).json({
-        status: "success",
-        message: "succesfull...............",
-        b: req.body
-    })
+    // console.log(req.body);
+    // res.status(200).json({
+    //     status: "success",
+    //     message: "succesfull...............",
+    //     b: req.body
+    // })
 }
 
 async function getSpecifiUser(req, res)
@@ -125,14 +127,7 @@ async function getSpecifiUser(req, res)
     }
 }
 
-app.post("/api/user", function(req, res){
-    console.log(req.body);
-    res.status(200).json({
-        status: "success",
-        message: "succesfull...............",
-        b: req.body
-    })
-});
+app.post("/api/user", createHandler);
 
 app.get("/user", getAllUser);
 
